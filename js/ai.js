@@ -3,7 +3,9 @@ function AI(grid) {
 }
 
 // static evaluation function
+//静态评价函数
 AI.prototype.eval = function() {
+  //有多少空格子
   var emptyCells = this.grid.availableCells().length;
 
   var smoothWeight = 0.1,
@@ -22,6 +24,8 @@ AI.prototype.eval = function() {
 };
 
 // alpha-beta depth first search
+// 极小极大搜索 （alpha-beta剪枝）
+// var newBest = this.search(depth, -10000, 10000, 0 ,0);
 AI.prototype.search = function(depth, alpha, beta, positions, cutoffs) {
   var bestScore;
   var bestMove = -1;
@@ -119,11 +123,13 @@ AI.prototype.search = function(depth, alpha, beta, positions, cutoffs) {
 }
 
 // performs a search and returns the best move
+//返回价值最大的移动方向
 AI.prototype.getBest = function() {
   return this.iterativeDeep();
 }
 
 // performs iterative deepening over the alpha-beta search
+// 在αβ搜索上执行迭代深度搜索
 AI.prototype.iterativeDeep = function() {
   var start = (new Date()).getTime();
   var depth = 0;
